@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
     <link rel="stylesheet" href="/src/output.css">
+
 </head>
-<body>
-    <h1 class="bg-amber-800">heloo</h1>
+
+<body class="flex flex-col min-h-screen">
+    <nav class=" bg-[#BBC863] h-20 flex w-screen">
+        <img class="p-3" src="/img/logo.svg" alt=""></li>
+        <ul class=" w-screen flex justify-center 
+         gap-15 items-center text-2xl">
+            <li> Home</li>
+            <li>FlashCards</li>
+            <li>Quiz</li>
+        </ul>
+    </nav>
+
+   <section class="flex bg-[#F0E491] grow items-center">
+    <div class="flex w-1/2  flex-col justify-center p-8 mb-[100px]">
+        <h1 class=" font-bold text-[30px]"><span class="text-[#31694E] ">Flash</span>Card</h1>
+        <p class=" font-medium">
+            Créez, organisez et révisez vos flashcards facilement. Avec Cards, vous pouvez regrouper vos cartes par
+            collections, mémoriser les informations étape par étape, puis tester vos connaissances grâce au mode Quiz.
+            L'application fonctionne entièrement en local
+            <span class="font-medium text-[12px]"> : vos données sont enregistrées dans votre navigateur (localStorage) ou chargées depuis des fichiers intégrés. Aucune connexion, aucun compte — juste vous et votre apprentissage. </span>
+        </p>
+    </div>
+    <div class="flex w-1/2 justify-center">
+        <img class="w-1/2 " src="/img/logo.svg" alt="logo">
+    </div>
+</section>
+
+ <footer class="bg-[#31694E] h-[10vh] flex items-center">
+    <ul class="flex justify-around w-full text-[#F0E491]">
+        <li>jaouad@gmail.com</li>
+        <li>&copy; FlashCards</li>
+        <li>Adresse : Youcode Nador</li>
+    </ul>
+</footer>
+
 </body>
+
 </html>
