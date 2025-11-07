@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quize</title>
+    <link rel="stylesheet" href="/src/output.css">
+
+</head>
+
+<body>
+
+    <body class="flex flex-col min-h-screen">
+        <nav class=" bg-[#BBC863] h-20 flex w-screen">
+            <img class="p-3" src="/img/logo.svg" alt=""></li>
+            <ul class=" w-screen flex justify-center 
+         gap-15 items-center text-2xl">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/FlashCards.html">FlashCards</a></li>
+                <li><a href="quize.html">Quiz</a></li>
+
+            </ul>
+        </nav>
+        <div class="flex justify-center items-center gap-10 p-10 bg-[#01ab31fc]">
+
+            <img src="/img/Albert Einstein.svg" alt="" class="w-40 opacity-80">
+
+            <div class="flex flex-col w-full max-w-md">
+                <label class="block mb-3 text-xl font-semibold text-amber-50 text-center">Choisir une collection
+                    :</label>
+
+                <select id="listCollections"
+                    class="p-3 rounded-xl bg-white text-black border-2 border-[#31694E] shadow-md text-lg">
+                    <option value="">-- Sélectionner une collection --</option>
+                </select>
+            </div>
+
+            <img src="/img/Albert Einstein.svg" alt="" class="w-40 opacity-80">
+
+        </div>
+
+
+        <section class="flex bg-[#F0E491] grow items-center justify-center gap-10 p-10 border">
+
+
+            <div onclick="verFlashcarde()"
+                class="bg-white shadow-lg rounded-2xl w-1/3 h-64 flex flex-col items-center justify-center p-4">
+                <h2 class="text-2xl font-bold mb-4">FlashCards</h2>
+                <img src="img/flsh.webp" alt="" class="w-32 h-32 object-cover mb-4">
+                <p class="text-center px-4">Accedez à vos cartes pour reviser facilement.</p>
+            </div>
+
+            <div onclick="verquize()"
+                class="bg-white shadow-lg rounded-2xl w-1/3 h-64 flex flex-col items-center justify-center p-4">
+                <h2 class="text-2xl font-bold mb-4">Quiz</h2>
+                <img src="img/OIP.jpg" alt="" class="w-32 h-32 object-cover  mb-4">
+                <p class="text-center px-4">Testez vos connaissances avec des quiz amusants.</p>
+            </div>
+
+        </section>
+
+
+
+        </section>
+        <div class=" flex justify-between">
+            <img src="/img/Albert Einstein.svg" alt="">
+            <img src="/img/Albert Einstein.svg" alt="">
+        </div>
+        <script>
+            function verFlashcarde() {
+                window.location.href = "FlashCards.html";
+            }
+        </script>
+        <footer class="bg-[#31694E] h-[10vh] flex items-center">
+            <ul class="flex justify-around w-full text-[#F0E491]">
+                <li>jaouad@gmail.com</li>
+                <li>&copy; FlashCards</li>
+                <li>Adresse : Youcode Nador</li>
+            </ul>
+        </footer>
+
+
+
+    </body>
+
+</html>
+</body>
+
+</html>
