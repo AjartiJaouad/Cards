@@ -7,23 +7,44 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col min-h-screen bg-[#F0E491]">
-
-
-  <nav class="bg-[#BBC863] h-20 flex items-center justify-center text-2xl font-semibold">
-    Ajouter des questions Vrai / Faux
+  
+  
+  
+  <nav class="bg-[#BBC863] h-20 flex items-center justify-between px-6 text-2xl font-semibold">
+    <a href="FlashCards.html" class="bg-[#004424] text-[#F0E491] px-4 py-2 rounded-xl ">
+      Retour aux Flashcards
+    </a>
+    <span>Ajouter des questions Vrai / Faux</span>
+    <div class="w-[150px]"></div>
   </nav>
+  
+  <div class="flex justify-center items-center gap-10 p-10 bg-[#01ab31fc] rounded-2xl">
 
+   
+
+    <div class="flex flex-col w-full max-w-md ">
+        
+        <select id="listCollections" 
+        class="p-3 rounded-xl bg-white text-black   border-[#31694E] shadow-md text-lg">
+            <option value="">-- Selectionner une collection --</option>
+        </select>
+    </div>
+
+   
+
+</div>
   <section class="flex flex-col items-center grow p-6 gap-8">
 
     <div class="bg-[#01ab31fc] rounded-2xl p-6 w-full max-w-lg text-[#030303] ">
       <label class="block mb-2 font-medium text-amber-50">Ecrire ta question :</label>
       <input type="text" class="w-full p-3 rounded-xl mb-4" placeholder="Ex : Le HTML est Backend ?">
 
-      <label class="block mb-2  font-medium  text-amber-50 ">Choisis la bonne réponse :</label>
-      <select class="w-full p-3 rounded-xl mb-4 ">
-        <option value="Vrai">Vrai</option>
-        <option value="Faux">Faux</option>
-      </select>
+      <label class="block mb-2  font-medium  text-amber-50 ">Choisis la bonne reponse :</label>
+<select id="reponse" class="w-full p-3 rounded-xl mb-4">
+  <option value="Vrai">Vrai</option>
+  <option value="Faux">Faux</option>
+</select>
+
 
       <button id="addQuestion" onclick="addQuestion()" class="bg-[#004424] text-[#F0E491] rounded-3xl w-full p-3 mt-2 font-medium">
         Ajouter la Question
@@ -39,7 +60,6 @@
       </ul>
     </section>
   </section>
-  <button  class="flex justify-around">Add question</button>
 
   <footer class="bg-[#31694E] h-[10vh] flex items-center justify-center">
     <ul class="flex justify-around w-full text-[#F0E491] font-medium">
@@ -51,26 +71,25 @@
 
 
   <script>
-    const add = document.getElementById("addQuestion")
-    const input = document.querySelector("input")
-    const questionList = document.getElementsByClassName("question")
-    const list = document.getElementsByClassName('list')
+function addQuestion() {
+    const questionInput = document.querySelector('input[placeholder="Ex : Le HTML est Backend ?"]');
+    const reponseSelect = document.getElementById("reponse"); 
+    const questionText = questionInput.value.trim();
+    const reponseText = reponseSelect.value;
 
-    function addQuestion(){
-      const text = input.value.trim()
-      
-      const li = document.createElement('span')
-      console.log('test',list)
- 
-    
-      list.innerHTML = text
-
+    if (questionText === "") {
+      alert("Veuillez remplir la question.");
+      return;
     }
 
-    // add.addEventListener("click",addQuestion );
+    const listeQuestions = document.querySelector('section ul.listquestion');
+    const nouvelleQuestion = document.createElement('li');
+    nouvelleQuestion.textContent = `${questionText} - Reponse : ${reponseText}`;
+    listeQuestions.appendChild(nouvelleQuestion);
 
-   
-    
+    questionInput.value = "";
+}
+
 
   </script>
 </body>
