@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<input type="text"> <button>add</button>
+
+<div>fezd</div>
+
+
+    <script>
+    const add = document.querySelector("button")
+    const input = document.querySelector("input")
+    const questionList = document.querySelector("div")
+    // const list = document.getElementsByClassName('list')
+
+    function addQuestion(){
+      const text = input.value.trim()
+      
+    //   const li = document.createElement('span')
+      console.log('test',questionList)
+    //   li.textContent = text 
+    
+      questionList.innerHTML = text
+
+      localStorage.setItem("question", text );
+
+    }
+
+    function getdata(){
+        let question  = localStorage.getItem("question");
+        questionList.innerHTML = question
+    }
+
+    add.addEventListener("click",addQuestion );
+
+   
+    window.addEventListener("load",getdata)
+
+  </script>
+</body>
+</html>

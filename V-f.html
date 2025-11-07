@@ -25,7 +25,7 @@
         <option value="Faux">Faux</option>
       </select>
 
-      <button id="addQuestionBtn" class="bg-[#004424] text-[#F0E491] rounded-3xl w-full p-3 mt-2 font-medium">
+      <button id="addQuestion" onclick="addQuestion()" class="bg-[#004424] text-[#F0E491] rounded-3xl w-full p-3 mt-2 font-medium">
         Ajouter la Question
       </button>
     </div>
@@ -33,9 +33,13 @@
   
     <section class="bg-[#01ab31fc]  rounded-2xl p-6 w-full max-w-lg text-[#F0E491] shadow-md">
       <h2 class="text-xl font-bold mb-4">Liste des questions :</h2>
-      <ul class="list-disc list-inside space-y-2"></ul>
+      <div class="list"></div>
+      <ul class="listquestion list-disc list-inside space-y-2">
+        <li class="question">jkjkl</li>
+      </ul>
     </section>
   </section>
+  <button  class="flex justify-around">Add question</button>
 
   <footer class="bg-[#31694E] h-[10vh] flex items-center justify-center">
     <ul class="flex justify-around w-full text-[#F0E491] font-medium">
@@ -45,5 +49,29 @@
     </ul>
   </footer>
 
+
+  <script>
+    const add = document.getElementById("addQuestion")
+    const input = document.querySelector("input")
+    const questionList = document.getElementsByClassName("question")
+    const list = document.getElementsByClassName('list')
+
+    function addQuestion(){
+      const text = input.value.trim()
+      
+      const li = document.createElement('span')
+      console.log('test',list)
+ 
+    
+      list.innerHTML = text
+
+    }
+
+    // add.addEventListener("click",addQuestion );
+
+   
+    
+
+  </script>
 </body>
 </html>
