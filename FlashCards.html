@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashCards</title>
     <link rel="stylesheet" href="/src/output.css">
-
 </head>
 
 <body class="flex flex-col min-h-screen">
     <nav class=" bg-[#BBC863] h-20 flex w-screen">
-        <img class="p-3" src="/img/logo.svg" alt=""></li>
-        <ul class=" w-screen flex justify-center 
-         gap-15 items-center text-2xl">
+        <img class="p-3" src="/img/logo.svg" alt="">
+        <ul class=" w-screen flex justify-center gap-15 items-center text-2xl">
             <li><a href="/index.html">Home</a></li>
             <li><a href="/FlashCards.html">FlashCards</a></li>
             <li><a href="#">Quiz</a></li>
@@ -21,78 +19,59 @@
     </nav>
 
     <section class="flex bg-[#F0E491] grow items-center ">
-        <div class="flex w-1/2  flex-col justify-center p-8 mb-[100px] gap-7">
+        <div class="flex w-1/2 flex-col justify-center p-8 mb-[100px] gap-7">
+            <!-- Creer une Collection -->
             <div class="gap-7">
                 <h1 class="text-2xl font-semibold mb-3">Créer une Collection</h1>
-
                 <input id="Creet_input1" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border" type="text"
                     placeholder="Nom de la Collection...">
-
                 <button onclick="creetMange()" class="bg-[#004424] rounded-3xl w-[100px] mt-4 p-2">
                     <span class="text-[#F0E491]">+</span>
                 </button>
             </div>
-            <div class="gap-7">
-                <h1 class="text-2xl font-semibold mb-3">Ajouter une Carte</h1>
 
-                <select id="listCollections" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border">
-                    <option value="">Selectionner une Collection</option>
-                </select>
+            <!-- Ajouter une Carte -->
+            <h1 class="text-2xl font-semibold mb-3">Ajouter une Carte</h1>
 
+            <select id="listCollections" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border">
+                <option value="">Selectionner une Collection</option>
+            </select>
 
+            <input id="questionInput" class="bg-amber-50 rounded-2xl p-2 w-full mb-2 border" type="text"
+                placeholder="Entrez la question...">
 
-                <fieldset class="border p-4 rounded-xl">
-                    <legend class="font-medium">Type de reponse</legend>
+            <input id="answerInput" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border" type="text"
+                placeholder="Entrez la réponse...">
 
-                    <label class="block mt-2">
-                        <input type="radio" name="type" class="mr-2">
-                        Vrai / Faux
-                    </label>
-
-                    <label class="block mt-2">
-                        <input type="radio" id="Directe" name="type" class="mr-2">
-                        Directe
-                    </label>
-
-                    <label class="block mt-2">
-                        <input type="radio" name="type" class="mr-2">
-                        Choix multiple
-                    </label>
-
-                </fieldset>
-
-                <button class="bg-[#004424] rounded-3xl w-[25%] mt-4 p-2 ">
-                    <span class="text-[#F0E491] font-medium" onclick="Ajouter()">Ajouter</span>
-                </button>
-
-                <p class="mt-3"></p>
-
-            </div>
-        </div>
-        <div class="flex w-[50%] justify-center">
-            <img src="/img/Albert Einstein.svg" alt="">
-            <section class="bg-[#004424] h-[60vh] w-[60%] rounded-2xl flex flex-col justify-between">
-
-                <div>
-                    <h1 id="resultat1" class="text-white text-2xl flex justify-center mt-5">Html Basic</h1>
-                </div>
-
-                <div class="flex justify-center items-center flex-1 p-[100px] bg-[#F0E491] rounded-xl">
-                    <p class="text-center">Quelle est la balise pour <br>un paragraphe ?</p>
-                </div>
-                <div class="flex justify-between px-6 mb-4">
-                    <button class="bg-[#F0E491] rounded-3xl w-[25%] mt-4 p-2 ">
-                        <span class="text-[#004424] font-medium"><- </span>
-                    </button>
-                    <button class="bg-[#F0E491] rounded-3xl w-[25%] mt-4 p-2 ">
-                        <span class="text-[#004424] font-medium">->
-
-                        </span>
-                    </button>
-                </div>
-            </section>
+            <button class="bg-[#004424] rounded-3xl w-[25%] mt-4 p-2" onclick="Ajouter()">
+                <span class="text-[#F0E491] font-medium">Ajouter</span>
+            </button>
         </div>
 
+        <!-- Affichage des cartes -->
+       <div class="flex w-[50%] justify-center flex-col items-center gap-5">
+    <section class="bg-[#004424] h-[60vh] w-[60%] rounded-2xl flex flex-col justify-between p-4">
+
+        <div>
+            <h1 id="collectionTitle" class="text-white text-2xl flex justify-center mt-2">Html Basic</h1>
+        </div>
+
+        <div class="flex justify-center items-center flex-1 bg-[#F0E491] rounded-xl w-full p-8">
+         <div class="flex justify-center items-center bg-[#F0E491] rounded-xl w-full p-4 h-64">
+    <p id="cardContent" class="text-center text-[#004424] text-xl">Quelle est la balise pour un paragraphe ?</p>
+</div>
+        </div>
+
+        <div class="flex justify-between px-6 mb-4">
+            <button class="bg-[#F0E491]  rounded-3xl w-[25%] mt-4 p-3 hover:bg-[#e0db6f] transition-colors" onclick="prevCard()">
+                <span class="text-[#004424] font-medium">_prev </span>
+            </button>
+            <button class="bg-[#F0E491] rounded-3xl w-[25%] mt-4 p-3 hover:bg-[#e0db6f] transition-colors" onclick="nextCard()">
+                <span class="text-[#004424] font-medium">next_</span>
+            </button>
+        </div>
+    </section>
+</div>
 
     </section>
 
@@ -103,61 +82,111 @@
             <li>Adresse : Youcode Nador</li>
         </ul>
     </footer>
+
     <script>
-        function creetMange() {
-            const input1 = document.getElementById("Creet_input1");
+        let collections = JSON.parse(localStorage.getItem('cards_collections')) || [];
+        let currentCollectionIndex = 0;
+        let currentCardIndex = 0;
+
+        function updateSelect() {
             const list = document.getElementById("listCollections");
+            // Quand lutilisateur vos change la collection dans le select
+            document.getElementById("listCollections").addEventListener("change", function () {
+                const selectedId = this.value;
+                if (!selectedId) return;
 
-            if (input1.value.trim() === "") {
-                alert("Le nom de la collection ne peut pas être vide.");
-                return;
-            }
+                currentCollectionIndex = collections.findIndex(c => c.id === selectedId);
+                currentCardIndex = 0;
+                renderCurrentCard();
+            });
 
-            const newOption = document.createElement("option");
-            newOption.textContent = input1.value;
-            newOption.value = input1.value;
-
-            list.appendChild(newOption);
-
-            input1.value = "";
+            list.innerHTML = '<option value="">Selectionner une Collection</option>';
+            collections.forEach(c => {
+                const option = document.createElement("option");
+                option.textContent = c.title;
+                option.value = c.id;
+                list.appendChild(option);
+            });
         }
+
+        function creetMange() {
+            const input = document.getElementById("Creet_input1");
+            if (!input.value.trim()) { alert("Le nom de la collection ne peut pas etre vide."); return; }
+
+            const newCollection = { id: input.value.toLowerCase().replace(/\s/g, '-'), title: input.value, cards: [] };
+            collections.push(newCollection);
+            localStorage.setItem('cards_collections', JSON.stringify(collections));
+            updateSelect();
+            // Slectionner automatiquement la nouvelle collection
+            document.getElementById("listCollections").value = newCollection.id;
+            currentCollectionIndex = collections.length - 1;
+            currentCardIndex = 0;
+            renderCurrentCard();
+            input.value = "";
+        }
+
         function Ajouter() {
             const list = document.getElementById("listCollections");
             const selectedCollection = list.value;
-
-            if (selectedCollection === "") {
-                alert("Veuillez selectine une collection.");
+            if (!selectedCollection) {
+                alert("Veuillez sélectionner une collection.");
                 return;
             }
 
-            const radios = document.getElementsByName("type");
-            let selectedType = "";
-            for (const radio of radios) {
-                if (radio.checked) {
-                    selectedType = radio.nextSibling.textContent.trim();
-                    break;
-                }
-            }
-
-            if (selectedType === "") {
-                alert("Veuillez selectionner un type de rponse.");
+            const question = document.getElementById("questionInput").value.trim();
+            const answer = document.getElementById("answerInput").value.trim();
+            if (!question || !answer) {
+                alert("Veuillez entrer une question et une reponse.");
                 return;
             }
 
-            if (selectedType === "Directe") {
-                window.location.href = "testCon.html";
-                alert("Vous avez choisi : " + selectedType);
-            }
-            if (selectedType === "Vrai / Faux") {
-                window.location.href = "v-f.html";
-                alert("Vous avez choisi : " + selectedType);
-            }
-            if (selectedType === "Choix multiple") {
-                window.location.href = "choix.html";
-                alert("Vous avez choisi : " + selectedType);
-            }
+            const collection = collections.find(c => c.id === selectedCollection);
+            collection.cards.push({ id: Date.now(), question, answer, type: "Directe" });
+            localStorage.setItem('cards_collections', JSON.stringify(collections));
+
+           
+            document.getElementById("questionInput").value = "";
+            document.getElementById("answerInput").value = "";
+
+            // Mettre a jour laffichage
+            currentCollectionIndex = collections.findIndex(c => c.id === selectedCollection);
+            currentCardIndex = collection.cards.length - 1;
+            renderCurrentCard();
         }
 
+        function renderCurrentCard() {
+            if (collections.length === 0) return;
+            const collection = collections[currentCollectionIndex];
+            const card = collection.cards[currentCardIndex] || { question: "Pas encore de carte", answer: "" };
+            document.getElementById("collectionTitle").textContent = collection.title;
+            document.getElementById("cardContent").textContent = card.question;
+        }
+
+        function nextCard() {
+            const collection = collections[currentCollectionIndex];
+            if (!collection || collection.cards.length === 0) return;
+            currentCardIndex = (currentCardIndex + 1) % collection.cards.length;
+            renderCurrentCard();
+        }
+
+        function prevCard() {
+            const collection = collections[currentCollectionIndex];
+            if (!collection || collection.cards.length === 0) return;
+            currentCardIndex = (currentCardIndex - 1 + collection.cards.length) % collection.cards.length;
+            renderCurrentCard();
+        }
+
+        // Flip au clic sur la carte
+        document.getElementById("cardContent").addEventListener("click", () => {
+            const collection = collections[currentCollectionIndex];
+            if (!collection || collection.cards.length === 0) return;
+            const card = collection.cards[currentCardIndex];
+            const p = document.getElementById("cardContent");
+            p.textContent = (p.textContent === card.question) ? card.answer : card.question;
+        });
+
+        updateSelect();
+        renderCurrentCard();
     </script>
 </body>
 

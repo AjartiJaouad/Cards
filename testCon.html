@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ajouter Questions Vrai / Faux</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="flex flex-col min-h-screen bg-[#F0E491]">
 
 
@@ -14,34 +16,34 @@
   </nav>
 
   <section class="flex flex-col items-center grow p-6 gap-8">
-<div class="flex justify-center items-center gap-10 p-10 bg-[#01ab31fc] rounded-2xl">
+    <div class="flex justify-center items-center gap-10 p-10 bg-[#01ab31fc] rounded-2xl">
 
-   
 
-    <div class="flex flex-col w-full max-w-md ">
-        
-        <select id="listCollections" 
-        class="p-3 rounded-xl bg-white text-black   border-[#31694E] shadow-md text-lg">
-            <option value="">-- Selectionner une collection --</option>
+
+      <div class="flex flex-col w-full max-w-md ">
+
+        <select id="listCollections" class="p-3 rounded-xl bg-white text-black   border-[#31694E] shadow-md text-lg">
+          <option value="">-- Selectionner une collection --</option>
         </select>
+      </div>
+
+
+
     </div>
-
-   
-
-</div>
 
     <div class="bg-[#01ab31fc] rounded-2xl p-6 w-full max-w-lg text-[#030303] ">
       <label class="block mb-2 font-medium text-amber-50">Ecrire ta question :</label>
       <input type="text" class="w-full p-3 rounded-xl mb-4" placeholder="Question?">
 
       <label class="block mb-2  font-medium  text-amber-50 ">La reponse :</label>
-   <input class="w-full p-3 rounded-xl mb-4" placeholder=" la reponse ?" type="text">
-      <button onclick="AjouterCuestion()" id="" class="bg-[#004424] text-[#F0E491] rounded-3xl w-full p-3 mt-2 font-medium">
+      <input class="w-full p-3 rounded-xl mb-4" placeholder=" la reponse ?" type="text">
+      <button onclick="AjouterCuestion()" id=""
+        class="bg-[#004424] text-[#F0E491] rounded-3xl w-full p-3 mt-2 font-medium">
         Ajouter la Question
       </button>
     </div>
 
-  
+
     <section class="bg-[#01ab31fc]  rounded-2xl p-6 w-full max-w-lg text-[#F0E491] shadow-md">
       <h2 class="text-xl font-bold mb-4">Liste des questions :</h2>
       <ul class="list-disc list-inside space-y-2"></ul>
@@ -80,4 +82,5 @@
   </footer>
 
 </body>
+
 </html>
