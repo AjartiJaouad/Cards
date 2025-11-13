@@ -1,192 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlashCards</title>
-    <link rel="stylesheet" href="/src/output.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/flashcss.css">
 </head>
 
-<body class="flex flex-col min-h-screen">
-    <nav class=" bg-[#BBC863] h-20 flex w-screen">
-        <img class="p-3" src="/img/logo.svg" alt="">
-        <ul class=" w-screen flex justify-center gap-15 items-center text-2xl">
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/FlashCards.html">FlashCards</a></li>
-            <li><a href="#">Quiz</a></li>
+<body class="flex flex-col min-h-screen bg-[#F0E491]">
+    <nav class="bg-[#BBC863] h-20 flex items-center px-6">
+        <img src="/img/logo.svg" alt="logo" class="h-12">
+        <ul class="flex ml-auto gap-8 text-2xl font-semibold">
+            <li><a href="/index.html" class="">Home</a></li>
+            <li><a href="/FlashCards.html" class="">FlashCards</a></li>
+            <li><a href="quize.html" class="">Quiz</a></li>
         </ul>
     </nav>
 
-    <section class="flex bg-[#F0E491] grow items-center ">
-        <div class="flex w-1/2 flex-col justify-center p-8 mb-[100px] gap-7">
-            <!-- Creer une Collection -->
-            <div class="gap-7">
-                <h1 class="text-2xl font-semibold mb-3">Créer une Collection</h1>
-                <input id="Creet_input1" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border" type="text"
-                    placeholder="Nom de la Collection...">
-                <button onclick="creetMange()" class="bg-[#004424] rounded-3xl w-[100px] mt-4 p-2">
-                    <span class="text-[#F0E491]">+</span>
-                </button>
-            </div>
+    <section class="flex grow items-center p-8 gap-8">
+        <!-- Formulaire Creation Collection et Carte -->
+        <div class="flex flex-col gap-6 w-1/2">
+            <h1 class="text-2xl font-semibold">Creer une Collection</h1>
+            <input id="inputNouvelleCollection" class="bg-amber-50 rounded-2xl p-2 border" type="text"
+                placeholder="Nom de la Collection...">
+            <button onclick="creerCollection()" class="bg-[#004424] rounded-3xl w-[120px] p-2 text-[#F0E491] hover:bg-amber-400">+</button>
 
-            <!-- Ajouter une Carte -->
-            <h1 class="text-2xl font-semibold mb-3">Ajouter une Carte</h1>
-
-            <select id="listCollections" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border">
+            <h1 class="text-2xl font-semibold mt-6">Ajouter une Carte</h1>
+            <select id="selectCollections" class="bg-amber-50 rounded-2xl p-2 border">
                 <option value="">Selectionner une Collection</option>
             </select>
 
-            <input id="questionInput" class="bg-amber-50 rounded-2xl p-2 w-full mb-2 border" type="text"
+            <input id="inputQuestion" class="bg-amber-50 rounded-2xl p-2 border" type="text"
                 placeholder="Entrez la question...">
+            <input id="inputReponse" class="bg-amber-50 rounded-2xl p-2 border" type="text"
+                placeholder="Entrez la reponse...">
 
-            <input id="answerInput" class="bg-amber-50 rounded-2xl p-2 w-full mb-4 border" type="text"
-                placeholder="Entrez la réponse...">
-
-            <button class="bg-[#004424] rounded-3xl w-[25%] mt-4 p-2" onclick="Ajouter()">
-                <span class="text-[#F0E491] font-medium">Ajouter</span>
-            </button>
+            <button onclick="ajouterCarte()"
+                class="bg-[#004424] rounded-3xl w-[120px] p-2 text-[#F0E491] mt-2  hover:bg-amber-400">Ajouter</button>
         </div>
 
         <!-- Affichage des cartes -->
-       <div class="flex w-[50%] justify-center flex-col items-center gap-5">
-    <section class="bg-[#004424] h-[60vh] w-[60%] rounded-2xl flex flex-col justify-between p-4">
+        <div class="flex flex-col w-1/2 items-center gap-6">
+            <p id="compteurCarte" class=" text-gray-700 mt-2 text-4xl bg-amber-100 p-6  rounded-3xl"></p>
+            <h1 id="titreCollection" class="text-emerald-950 bg-amber-400 p-4 rounded-3xl">Pas de collection</h1>
 
-        <div>
-            <h1 id="collectionTitle" class="text-white text-2xl flex justify-center mt-2">Html Basic</h1>
-        </div>
+            <div class="w-full h-64 perspective">
+                <div class="carte bg-[#000000]" id="carte">
+                    <div class="face-avant text-emerald-950 bg-amber-400 p-4 rounded-3xl">
+                        <p id="texteQuestion" class="text-center"></p>
+                    </div>
+                    <div class="face-arriere text-emerald-950 bg-amber-400 p-4 rounded-3xl">
+                        <p id="texteReponse" class="text-center"></p>
+                    </div>
+                </div>
+            </div>
 
-        <div class="flex justify-center items-center flex-1 bg-[#F0E491] rounded-xl w-full p-8">
-         <div class="flex justify-center items-center bg-[#F0E491] rounded-xl w-full p-4 h-64">
-    <p id="cardContent" class="text-center text-[#004424] text-xl">Quelle est la balise pour un paragraphe ?</p>
-</div>
-        </div>
-
-        <div class="flex justify-between px-6 mb-4">
-            <button class="bg-[#F0E491]  rounded-3xl w-[25%] mt-4 p-3 hover:bg-[#e0db6f] transition-colors" onclick="prevCard()">
-                <span class="text-[#004424] font-medium">_prev </span>
-            </button>
-            <button class="bg-[#F0E491] rounded-3xl w-[25%] mt-4 p-3 hover:bg-[#e0db6f] transition-colors" onclick="nextCard()">
-                <span class="text-[#004424] font-medium">next_</span>
-            </button>
+            <div class="flex justify-between w-full mt-4">
+                <button onclick="cartePrecedente()"
+                    class="bg-[#004424] rounded-3xl w-[120px] p-2 hover:bg-amber-400">Prcdente</button>
+                <button onclick="carteSuivante()"
+                    class="bg-[#004424] rounded-3xl w-[120px] p-2  hover:bg-amber-400">Suivante</button>
+            </div>
         </div>
     </section>
-</div>
 
-    </section>
-
-    <footer class="bg-[#31694E] h-[10vh] flex items-center">
-        <ul class="flex justify-around w-full text-[#F0E491]">
-            <li>jaouad@gmail.com</li>
-            <li>&copy; FlashCards</li>
-            <li>Adresse : Youcode Nador</li>
-        </ul>
+    <footer class="bg-[#31694E] h-[10vh] flex items-center justify-around text-[#F0E491]">
+        <li>jaouad@gmail.com</li>
+        <li>&copy; FlashCards</li>
+        <li>Adresse : Youcode Nador</li>
     </footer>
 
     <script>
-        let collections = JSON.parse(localStorage.getItem('cards_collections')) || [];
-        let currentCollectionIndex = 0;
-        let currentCardIndex = 0;
+        // Collections et cartes
+        let collections = JSON.parse(localStorage.getItem('collections_de_cartes')) || [];
+        let indexCollectionActuelle = 0;
+        let indexCarteActuelle = 0;
 
-        function updateSelect() {
-            const list = document.getElementById("listCollections");
-            // Quand lutilisateur vos change la collection dans le select
-            document.getElementById("listCollections").addEventListener("change", function () {
-                const selectedId = this.value;
-                if (!selectedId) return;
+        const carteElement = document.getElementById("carte");
 
-                currentCollectionIndex = collections.findIndex(c => c.id === selectedId);
-                currentCardIndex = 0;
-                renderCurrentCard();
-            });
+        // Met a jour le select des collections
+        function mettreAJourSelect() {
+            const select = document.getElementById("selectCollections");
+            select.innerHTML = '<option value="">Selectionner une Collection</option>';
 
-            list.innerHTML = '<option value="">Selectionner une Collection</option>';
             collections.forEach(c => {
                 const option = document.createElement("option");
-                option.textContent = c.title;
+                option.textContent = c.titre;
                 option.value = c.id;
-                list.appendChild(option);
+                select.appendChild(option);
+            });
+
+            select.addEventListener("change", function () {
+                const idSelectionne = this.value;
+                if (!idSelectionne) return;
+                indexCollectionActuelle = collections.findIndex(c => c.id === idSelectionne);
+                indexCarteActuelle = 0;
+                afficherCarteActuelle();
             });
         }
 
-        function creetMange() {
-            const input = document.getElementById("Creet_input1");
-            if (!input.value.trim()) { alert("Le nom de la collection ne peut pas etre vide."); return; }
-
-            const newCollection = { id: input.value.toLowerCase().replace(/\s/g, '-'), title: input.value, cards: [] };
-            collections.push(newCollection);
-            localStorage.setItem('cards_collections', JSON.stringify(collections));
-            updateSelect();
-            // Slectionner automatiquement la nouvelle collection
-            document.getElementById("listCollections").value = newCollection.id;
-            currentCollectionIndex = collections.length - 1;
-            currentCardIndex = 0;
-            renderCurrentCard();
-            input.value = "";
-        }
-
-        function Ajouter() {
-            const list = document.getElementById("listCollections");
-            const selectedCollection = list.value;
-            if (!selectedCollection) {
-                alert("Veuillez sélectionner une collection.");
+        // Creer une nouvelle collection
+        function creerCollection() {
+            const input = document.getElementById("inputNouvelleCollection");
+            if (!input.value.trim()) {
+                alert("Le nom de la collection ne peut pas etre vide.");
                 return;
             }
 
-            const question = document.getElementById("questionInput").value.trim();
-            const answer = document.getElementById("answerInput").value.trim();
-            if (!question || !answer) {
+            const nouvelleCollection = {
+                id: input.value.toLowerCase().replace(/\s/g, '-'),
+                titre: input.value,
+                cartes: []
+            };
+            collections.push(nouvelleCollection);
+            localStorage.setItem('collections_de_cartes', JSON.stringify(collections));
+            mettreAJourSelect();
+
+            document.getElementById("selectCollections").value = nouvelleCollection.id;
+            indexCollectionActuelle = collections.length - 1;
+            indexCarteActuelle = 0;
+            afficherCarteActuelle();
+            input.value = "";
+        }
+
+        // Ajouter une carte a une collection
+        function ajouterCarte() {
+            const select = document.getElementById("selectCollections");
+            const idCollection = select.value;
+            if (!idCollection) {
+                alert("Veuillez selectionner une collection.");
+                return;
+            }
+
+            const question = document.getElementById("inputQuestion").value.trim();
+            const reponse = document.getElementById("inputReponse").value.trim();
+            if (!question || !reponse) {
                 alert("Veuillez entrer une question et une reponse.");
                 return;
             }
 
-            const collection = collections.find(c => c.id === selectedCollection);
-            collection.cards.push({ id: Date.now(), question, answer, type: "Directe" });
-            localStorage.setItem('cards_collections', JSON.stringify(collections));
+            const collection = collections.find(c => c.id === idCollection);
+            collection.cartes.push({ id: Date.now(), question, reponse });
+            localStorage.setItem('collections_de_cartes', JSON.stringify(collections));
 
-           
-            document.getElementById("questionInput").value = "";
-            document.getElementById("answerInput").value = "";
+            document.getElementById("inputQuestion").value = "";
+            document.getElementById("inputReponse").value = "";
 
-            // Mettre a jour laffichage
-            currentCollectionIndex = collections.findIndex(c => c.id === selectedCollection);
-            currentCardIndex = collection.cards.length - 1;
-            renderCurrentCard();
+            indexCollectionActuelle = collections.findIndex(c => c.id === idCollection);
+            indexCarteActuelle = collection.cartes.length - 1;
+            afficherCarteActuelle();
         }
 
-        function renderCurrentCard() {
-            if (collections.length === 0) return;
-            const collection = collections[currentCollectionIndex];
-            const card = collection.cards[currentCardIndex] || { question: "Pas encore de carte", answer: "" };
-            document.getElementById("collectionTitle").textContent = collection.title;
-            document.getElementById("cardContent").textContent = card.question;
+        // Affiche la carte actuelle
+        function afficherCarteActuelle() {
+            if (collections.length === 0) {
+                document.getElementById("titreCollection").textContent = "Pas de collection";
+                document.getElementById("texteQuestion").textContent = "";
+                document.getElementById("texteReponse").textContent = "";
+                document.getElementById("compteurCarte").textContent = "";
+                return;
+            }
+
+            const collection = collections[indexCollectionActuelle];
+            const carte = collection.cartes[indexCarteActuelle] || { question: "Pas encore de carte", reponse: "" };
+
+            document.getElementById("titreCollection").textContent = collection.titre;
+            document.getElementById("texteQuestion").textContent = carte.question;
+            document.getElementById("texteReponse").textContent = carte.reponse;
+
+            // Affichage du compteur
+            document.getElementById("compteurCarte").textContent =
+                collection.cartes.length > 0
+                    ? `Carte ${indexCarteActuelle + 1} / ${collection.cartes.length}`
+                    : "Aucune carte";
+
+            carteElement.classList.remove("rotation-y-180");
         }
 
-        function nextCard() {
-            const collection = collections[currentCollectionIndex];
-            if (!collection || collection.cards.length === 0) return;
-            currentCardIndex = (currentCardIndex + 1) % collection.cards.length;
-            renderCurrentCard();
+
+        // Carte suivante
+        function carteSuivante() {
+            const collection = collections[indexCollectionActuelle];
+            if (!collection || collection.cartes.length === 0) return;
+            indexCarteActuelle = (indexCarteActuelle + 1) % collection.cartes.length;
+            afficherCarteActuelle();
         }
 
-        function prevCard() {
-            const collection = collections[currentCollectionIndex];
-            if (!collection || collection.cards.length === 0) return;
-            currentCardIndex = (currentCardIndex - 1 + collection.cards.length) % collection.cards.length;
-            renderCurrentCard();
+        // Carte precedente
+        function cartePrecedente() {
+            const collection = collections[indexCollectionActuelle];
+            if (!collection || collection.cartes.length === 0) return;
+            indexCarteActuelle = (indexCarteActuelle - 1 + collection.cartes.length) % collection.cartes.length;
+            afficherCarteActuelle();
         }
 
-        // Flip au clic sur la carte
-        document.getElementById("cardContent").addEventListener("click", () => {
-            const collection = collections[currentCollectionIndex];
-            if (!collection || collection.cards.length === 0) return;
-            const card = collection.cards[currentCardIndex];
-            const p = document.getElementById("cardContent");
-            p.textContent = (p.textContent === card.question) ? card.answer : card.question;
+        // Flip de la carte au clic
+        carteElement.addEventListener("click", () => {
+            const collection = collections[indexCollectionActuelle];
+            if (!collection || collection.cartes.length === 0) return;
+            carteElement.classList.toggle("rotation-y-180");
         });
 
-        updateSelect();
-        renderCurrentCard();
+        mettreAJourSelect();
+        afficherCarteActuelle();
     </script>
 </body>
 
