@@ -21,7 +21,7 @@
   </nav>
 
   <!-- Section Quiz -->
-  <section class="flex flex-col items-center justify-center flexgrow p-10 gap-6">
+  <section class="flex flex-col items-center justify-center flex-grow p-10 gap-6">
 
     <h1 class="text-4xl font-bold text-[#2E7D32]">Mode Quiz</h1>
 
@@ -83,7 +83,7 @@
   .then(response => response.json())
   .then(data => {
     collections = data; // stocke toutes les collections
-   t
+    // Remplir le select
     collections.forEach(c => {
       const option = document.createElement("option");
       option.value = c.id;
@@ -146,7 +146,7 @@
           document.getElementById("btnFaux")?.remove();
         }
       } else {
-        questionEl.textContent = "Quiz terminé !";
+        questionEl.textContent = "🎉 Quiz terminé !";
         resultatEl.textContent = "";
         scoreEl.textContent = `Votre score : ${score} / ${questions.length}`;
         inputReponse.style.display = "none";
@@ -167,12 +167,12 @@
       }
 
       if (correct) {
-        resultatEl.textContent = "✅ Bonne reponse !";
+        resultatEl.textContent = "✅ Bonne réponse !";
         resultatEl.className = "text-green-700 font-semibold";
         score++;
       } else {
         let bonneRep = q.type === "text" ? q.acceptedAnswers[0] : q.correct ? "Vrai" : "Faux";
-        resultatEl.textContent = ` Mauvaise reponse. La bonne etait : ${bonneRep}`;
+        resultatEl.textContent = `❌ Mauvaise réponse. La bonne était : ${bonneRep}`;
         resultatEl.className = "text-red-700 font-semibold";
       }
 
