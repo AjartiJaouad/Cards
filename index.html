@@ -1,47 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cards</title>
-    <link rel="stylesheet" href="/src/output.css">
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="flex flex-col min-h-screen">
-      <nav class="bg-[#BBC863] h-20 flex items-center px-6">
+<body class="flex flex-col min-h-screen bg-[#F8F9FA]">
+
+    <!-- Navbar -->
+    <nav class="bg-[#2E7D32] h-20 flex items-center px-6 shadow-md">
         <img src="/img/logo.svg" alt="logo" class="h-12">
-        <ul class="flex ml-auto gap-8 text-2xl font-semibold">
-            <li><a href="/index.html" class="hover:text-white transition">Home</a></li>
-            <li><a href="/FlashCards.html" class="hover:text-white transition">FlashCards</a></li>
-            <li><a href="quize.html" class="hover:text-white transition">Quiz</a></li>
+        <ul class="flex ml-auto gap-8 text-2xl font-semibold text-white">
+            <li><a href="/index.html" class="hover:text-[#F9E79F] transition">Home</a></li>
+            <li><a href="/FlashCards.html" class="hover:text-[#F9E79F] transition">FlashCards</a></li>
+            <li><a href="quize.html" class="hover:text-[#F9E79F] transition">Quiz</a></li>
         </ul>
     </nav>
 
-   <section class="flex bg-[#F0E491] grow items-center">
-    <div class="flex w-1/2  flex-col justify-center p-8 mb-[100px]">
-        <h1 class=" font-bold text-[30px]"><span class="text-[#31694E] ">Flash</span>Card</h1>
-        <p class=" font-medium">
-            Créez, organisez et révisez vos flashcards facilement. Avec Cards, vous pouvez regrouper vos cartes par
-            collections, mémoriser les informations étape par étape, puis tester vos connaissances grâce au mode Quiz.
-            L'application fonctionne entièrement en local
-            <span class="font-medium text-[12px]"> : vos données sont enregistrées dans votre navigateur (localStorage) ou chargées depuis des fichiers intégrés. Aucune connexion, aucun compte — juste vous et votre apprentissage. </span>
-        </p>
-    </div>
-    <div class="flex w-1/2 justify-center">
-        <img class="w-1/2 " src="/img/logo.svg" alt="logo">
-    </div>
-</section>
+    <!-- Hero Section -->
+    <section class="flex flex-col md:flex-row bg-[#F9E79F] grow items-center p-8 gap-8">
+        <div class="flex flex-col justify-center w-full md:w-1/2 gap-4">
+            <h1 class="font-bold text-4xl md:text-5xl text-[#2E7D32]">Flash<span class="text-[#1C1C1C]">Cards</span>
+            </h1>
+            <p class="font-medium text-base md:text-2xl text-[#1C1C1C]">
+                Créez, organisez et révisez vos flashcards facilement. Avec Cards, vous pouvez regrouper vos cartes par
+                collections, mémoriser les informations étape par étape, puis tester vos connaissances grâce au mode
+                Quiz.
+                <span class="text-sm text-[#2E7D32]">
+                    Vos données sont enregistrées dans votre navigateur (localStorage). Aucune connexion, aucun compte —
+                    juste vous et votre apprentissage.
+                </span>
+            </p>
+        </div>
 
+        <section class="flex flex-col md:flex-row justify-center gap-10 p-10">
+            <div onclick="verFlashcarde()"
+                class="bg-white shadow-lg rounded-2xl w-64 h-80 flex flex-col items-center justify-center p-4 cursor-pointer hover:scale-105 transform transition">
+                <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">FlashCards</h2>
+                <img src="img/flsh.webp" alt="FlashCards" class="w-32 h-32 object-cover mb-4 rounded-xl">
+                <p class="text-center px-2 text-[#1C1C1C]">Accédez à vos cartes pour réviser facilement.</p>
+            </div>
 
- <footer class="bg-[#31694E] h-[10vh] flex items-center">
-    <ul class="flex justify-around w-full text-[#F0E491]">
+            <div onclick="verquize()"
+                class="bg-white shadow-lg rounded-2xl w-64 h-80 flex flex-col items-center justify-center p-4 cursor-pointer hover:scale-105 transform transition">
+                <h2 class="text-2xl font-bold text-[#2E7D32] mb-4">Quiz</h2>
+                <img src="img/OIP.jpg" alt="Quiz" class="w-32 h-32 object-cover mb-4 rounded-xl">
+                <p class="text-center px-2 text-[#1C1C1C]">Testez vos connaissances avec des quiz amusants.</p>
+            </div>
+        </section>
+    </section>
+    <script>
+        function verFlashcarde() {
+            window.location.href = "FlashCards.html";
+        }
+        function verquize() {
+            window.location.href = "quize.html";
+        }
+    </script>
+    <!-- Footer -->
+    <footer class="bg-[#2E7D32] h-[10vh] flex flex-col md:flex-row items-center justify-around text-[#F9E79F] py-2">
         <li>jaouad@gmail.com</li>
         <li>&copy; FlashCards</li>
         <li>Adresse : Youcode Nador</li>
-    </ul>
-</footer>
+    </footer>
 
 </body>
 

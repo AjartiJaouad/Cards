@@ -9,68 +9,93 @@
     <link rel="stylesheet" href="/flashcss.css">
 </head>
 
-<body class="flex flex-col min-h-screen bg-[#F0E491]">
-    <nav class="bg-[#BBC863] h-20 flex items-center px-6">
+<body class="flex flex-col min-h-screen bg-[#F8F9FA] text-[#1C1C1C]">
+
+    <!-- Navbar -->
+    <nav class="bg-[#2E7D32] h-20 flex items-center px-6 shadow-md">
         <img src="/img/logo.svg" alt="logo" class="h-12">
-        <ul class="flex ml-auto gap-8 text-2xl font-semibold">
-            <li><a href="/index.html" class="">Home</a></li>
-            <li><a href="/FlashCards.html" class="">FlashCards</a></li>
-            <li><a href="quize.html" class="">Quiz</a></li>
+        <ul class="flex ml-auto gap-8 text-2xl font-semibold text-white">
+            <li><a href="/index.html" class="hover:text-[#F9E79F] transition">Home</a></li>
+            <li><a href="/FlashCards.html" class="hover:text-[#F9E79F] transition">FlashCards</a></li>
+            <li><a href="quize.html" class="hover:text-[#F9E79F] transition">Quiz</a></li>
         </ul>
     </nav>
 
-    <section class="flex grow items-center p-8 gap-8">
-        <!-- Formulaire Creation Collection et Carte -->
-        <div class="flex flex-col gap-6 w-1/2">
-            <h1 class="text-2xl font-semibold">Creer une Collection</h1>
-            <input id="inputNouvelleCollection" class="bg-amber-50 rounded-2xl p-2 border" type="text"
-                placeholder="Nom de la Collection...">
-            <button onclick="creerCollection()" class="bg-[#004424] rounded-3xl w-[120px] p-2 text-[#F0E491] hover:bg-amber-400">+</button>
+    <!-- Section principale -->
+    <section class="flex flex-col md:flex-row grow items-start md:items-center p-10 gap-12 bg-[#F9E79F]">
 
-            <h1 class="text-2xl font-semibold mt-6">Ajouter une Carte</h1>
-            <select id="selectCollections" class="bg-amber-50 rounded-2xl p-2 border">
+        <!-- Formulaire -->
+        <div class="flex flex-col gap-6 w-full md:w-1/2 bg-white shadow-lg rounded-2xl p-6 border border-[#DDE6E8]">
+            <h1 class="text-3xl font-bold text-[#2E7D32]">Creer une Collection</h1>
+
+            <input id="inputNouvelleCollection"
+                class="bg-[#F9E79F] rounded-xl p-2 border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
+                type="text" placeholder="Nom de la Collection...">
+
+            <button onclick="creerCollection()"
+                class="bg-[#2E7D32] rounded-3xl w-[140px] p-2 text-white font-semibold hover:bg-[#256928] transition">+</button>
+
+            <h1 class="text-2xl font-semibold mt-6 text-[#2E7D32]">Ajouter une Carte</h1>
+
+            <select id="selectCollections"
+                class="bg-[#F9E79F] rounded-xl p-2 border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]">
                 <option value="">Selectionner une Collection</option>
             </select>
 
-            <input id="inputQuestion" class="bg-amber-50 rounded-2xl p-2 border" type="text"
-                placeholder="Entrez la question...">
-            <input id="inputReponse" class="bg-amber-50 rounded-2xl p-2 border" type="text"
-                placeholder="Entrez la reponse...">
+            <input id="inputQuestion"
+                class="bg-[#F9E79F] rounded-xl p-2 border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
+                type="text" placeholder="Entrez la question...">
+
+            <input id="inputReponse"
+                class="bg-[#F9E79F] rounded-xl p-2 border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
+                type="text" placeholder="Entrez la reponse...">
 
             <button onclick="ajouterCarte()"
-                class="bg-[#004424] rounded-3xl w-[120px] p-2 text-[#F0E491] mt-2  hover:bg-amber-400">Ajouter</button>
+                class="bg-[#2E7D32] rounded-3xl w-[140px] p-2 text-white font-semibold hover:bg-[#256928] transition">Ajouter</button>
         </div>
 
         <!-- Affichage des cartes -->
-        <div class="flex flex-col w-1/2 items-center gap-6">
-            <p id="compteurCarte" class=" text-gray-700 mt-2 text-4xl bg-amber-100 p-6  rounded-3xl"></p>
-            <h1 id="titreCollection" class="text-emerald-950 bg-amber-400 p-4 rounded-3xl">Pas de collection</h1>
+        <div class="flex flex-col w-full md:w-1/2 items-center gap-6">
+            <p id="compteurCarte"
+                class="text-4xl text-[#2E7D32] bg-[#F9E79F] px-8 py-4 rounded-3xl shadow-md">
+            </p>
+
+            <h1 id="titreCollection"
+                class="text-2xl font-semibold text-[#1C1C1C] bg-[#DDE6E8] px-6 py-3 rounded-3xl">
+                Pas de collection
+            </h1>
 
             <div class="w-full h-64 perspective">
-                <div class="carte bg-[#000000]" id="carte">
-                    <div class="face-avant text-emerald-950 bg-amber-400 p-4 rounded-3xl">
-                        <p id="texteQuestion" class="text-center"></p>
+                <div class="carte" id="carte">
+                    <div
+                        class="face-avant text-[#1C1C1C] bg-white shadow-md p-6 rounded-2xl flex items-center justify-center border border-[#DDE6E8]">
+                        <p id="texteQuestion" class="text-center text-xl font-medium"></p>
                     </div>
-                    <div class="face-arriere text-emerald-950 bg-amber-400 p-4 rounded-3xl">
-                        <p id="texteReponse" class="text-center"></p>
+                    <div
+                        class="face-arriere text-[#1C1C1C] bg-white shadow-md p-6 rounded-2xl flex items-center justify-center border border-[#DDE6E8]">
+                        <p id="texteReponse" class="text-center text-xl font-medium"></p>
                     </div>
                 </div>
             </div>
 
             <div class="flex justify-between w-full mt-4">
                 <button onclick="cartePrecedente()"
-                    class="bg-[#004424] rounded-3xl w-[120px] p-2 hover:bg-amber-400">Prcdente</button>
+                    class="bg-[#2E7D32] text-white rounded-3xl w-[140px] p-2 font-semibold hover:bg-[#256928] transition">Precedente</button>
+
                 <button onclick="carteSuivante()"
-                    class="bg-[#004424] rounded-3xl w-[120px] p-2  hover:bg-amber-400">Suivante</button>
+                    class="bg-[#2E7D32] text-white rounded-3xl w-[140px] p-2 font-semibold hover:bg-[#256928] transition">Suivante</button>
             </div>
         </div>
     </section>
 
-    <footer class="bg-[#31694E] h-[10vh] flex items-center justify-around text-[#F0E491]">
+    <!-- Footer -->
+    <footer class="bg-[#2E7D32] h-[10vh] flex items-center justify-around text-[#F9E79F] font-medium">
         <li>jaouad@gmail.com</li>
         <li>&copy; FlashCards</li>
         <li>Adresse : Youcode Nador</li>
     </footer>
+
+
 
     <script>
         // Collections et cartes
