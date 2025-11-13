@@ -1,0 +1,59 @@
+[
+  {
+    "id": "q1",
+    "collectionId": "html-basics",
+    "title": "Quiz HTML - Niveau 1",
+    "questions": [
+      {
+        "id": "q1-1",
+        "type": "text",
+        "question": "Que signifie HTML ?",
+        "acceptedAnswers": ["Hyper Text Markup Language", "Hypertext Markup Language"]
+      },
+      {
+        "id": "q1-2",
+        "type": "true_false",
+        "question": "La balise <div> est sémantique.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "id": "q2",
+    "collectionId": "css-basics",
+    "title": "Quiz CSS - Niveau 2",
+    "questions": [
+      {
+        "id": "q2-1",
+        "type": "text",
+        "question": "Que signifie CSS ?",
+        "acceptedAnswers": ["Cascading Style Sheets"]
+      },
+      {
+        "id": "q2-2",
+        "type": "true_false",
+        "question": "La propriété 'color' permet de changer la couleur du texte.",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "id": "q3",
+    "collectionId": "js-basics",
+    "title": "Quiz JavaScript - Niveau 3",
+    "questions": [
+      {
+        "id": "q3-1",
+        "type": "text",
+        "question": "Que signifie JS ?",
+        "acceptedAnswers": ["JavaScript"]
+      },
+      {
+        "id": "q3-2",
+        "type": "true_false",
+        "question": "La fonction 'alert()' affiche un message dans la console.",
+        "correct": false
+      }
+    ]
+  }
+]

@@ -1,69 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz & FlashCards</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="flex flex-col min-h-screen bg-[#F0E491]">
+<body class="flex flex-col min-h-screen bg-[#F9E79F] text-[#1C1C1C]">
 
-    
-    <nav class="bg-[#BBC863] h-20 flex items-center px-6">
-        <img src="/img/logo.svg" alt="logo" class="h-12">
-        <ul class="flex ml-auto gap-8 text-2xl font-semibold">
-            <li><a href="/index.html" class="hover:text-white transition">Home</a></li>
-            <li><a href="/FlashCards.html" class="hover:text-white transition">FlashCards</a></li>
-            <li><a href="quize.html" class="hover:text-white transition">Quiz</a></li>
-        </ul>
-    </nav>
+  <!-- Navbar -->
+  <nav class="bg-[#2E7D32] h-20 flex items-center px-6 shadow-md">
+    <img src="/img/logo.svg" alt="logo" class="h-12">
+    <ul class="flex ml-auto gap-8 text-2xl font-semibold text-white">
+      <li><a href="/index.html" class="hover:text-[#F9E79F] transition">Home</a></li>
+      <li><a href="/FlashCards.html" class="hover:text-[#F9E79F] transition">FlashCards</a></li>
+      <li><a href="quize.html" class="hover:text-[#F9E79F] transition">Quiz</a></li>
+    </ul>
+  </nav>
 
- 
-    <div class="flex justify-around  bg-[#01ab31fc]">
-        <img src="/img/Albert Einstein.svg" alt="Einstein" class="w-20">
+  <!-- Section Quiz -->
+  <section class="flex flex-col items-center justify-center flexgrow p-10 gap-6">
 
-        
+    <h1 class="text-4xl font-bold text-[#2E7D32]">Mode Quiz</h1>
 
-        <img src="/img/Albert Einstein.svg" alt="Einstein" class="w-20">
+    <!-- Sélection de la collection -->
+    <div class="flex flex-col items-center gap-4 bg-white shadow-lg rounded-2xl p-6 w-[90%] max-w-md">
+      <select id="selectQuizCollection"
+        class="bg-[#F9E79F] rounded-xl p-2 border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32] w-full">
+        <option value="">-- Choisir une collection --</option>
+      </select>
+      <button onclick="demarrerQuiz()"
+        class="bg-[#2E7D32] text-white rounded-3xl px-6 py-2 font-semibold hover:bg-[#256928] transition">
+        Commencer
+      </button>
     </div>
 
-    
-    <section class="flex justify-center gap-10 p-10">
-        <div onclick="verFlashcarde()"
-            class="bg-white shadow-lg rounded-2xl w-64 h-80 flex flex-col items-center justify-center p-4 cursor-pointer hover:scale-105 transform transition">
-            <h2 class="text-2xl font-bold mb-4">FlashCards</h2>
-            <img src="img/flsh.webp" alt="FlashCards" class="w-32 h-32 object-cover mb-4">
-            <p class="text-center px-2">Accdez a vos cartes pour reviser facilement.</p>
-        </div>
+    <!-- Zone Quiz -->
+    <div id="zoneQuiz"
+      class="hidden flex-col items-center gap-6 bg-white shadow-lg rounded-2xl p-8 w-[90%] max-w-xl border border-[#DDE6E8]">
+      <h2 id="question" class="text-2xl font-semibold text-[#2E7D32]"></h2>
 
-        <div onclick="verquize()"
-            class="bg-white shadow-lg rounded-2xl w-64 h-80 flex flex-col items-center justify-center p-4 cursor-pointer hover:scale-105 transform transition">
-            <h2 class="text-2xl font-bold mb-4">Quiz</h2>
-            <img src="img/OIP.jpg" alt="Quiz" class="w-32 h-32 object-cover mb-4">
-            <p class="text-center px-2">Testez vos connaissances avec des quiz amusants.</p>
-        </div>
-    </section>
+      <input id="reponseUtilisateur" type="text" placeholder="Votre réponse..."
+        class="rounded-xl p-2 w-full border border-[#DDE6E8] focus:outline-none focus:ring-2 focus:ring-[#2E7D32]">
 
-   
-    <footer class="bg-[#31694E] h-20 flex items-center justify-center mt-auto">
-        <ul class="flex justify-around w-full text-[#F0E491] font-semibold">
-            <li>jaouad@gmail.com</li>
-            <li>&copy; FlashCards</li>
-            <li>Adresse : Youcode Nador</li>
-        </ul>
-    </footer>
+      <button onclick="verifierReponse()"
+        class="bg-[#2E7D32] text-white rounded-3xl px-6 py-2 font-semibold hover:bg-[#256928] transition">
+        Valider
+      </button>
 
-    <script>
-        function verFlashcarde() {
-            window.location.href = "FlashCards.html";
+      <p id="resultat" class="text-lg font-semibold"></p>
+      <p id="score" class="mt-4 text-xl font-bold text-[#2E7D32]"></p>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#2E7D32] text-[#F9E79F] font-medium py-4">
+    <ul class="flex justify-around">
+      <li>jaouad@gmail.com</li>
+      <li>&copy; FlashCards</li>
+      <li>Adresse : Youcode Nador</li>
+    </ul>
+  </footer>
+
+  <script>
+    const selectQuizCollection = document.getElementById("selectQuizCollection");
+    const zoneQuiz = document.getElementById("zoneQuiz");
+    const questionEl = document.getElementById("question");
+    const resultatEl = document.getElementById("resultat");
+    const scoreEl = document.getElementById("score");
+    const inputReponse = document.getElementById("reponseUtilisateur");
+
+    let collections = [];
+    let questions = [];
+    let index = 0;
+    let score = 0;
+
+    // Charger le JSON depuis un fichier externe (quiz.json)
+ fetch('quiz.json')
+  .then(response => response.json())
+  .then(data => {
+    collections = data; // stocke toutes les collections
+   t
+    collections.forEach(c => {
+      const option = document.createElement("option");
+      option.value = c.id;
+      option.textContent = c.title;
+      selectQuizCollection.appendChild(option);
+    });
+  })
+  .catch(error => console.error("Erreur chargement JSON :", error));
+
+    function demarrerQuiz() {
+      const idCollection = selectQuizCollection.value;
+      if (!idCollection) {
+        alert("Choisissez une collection !");
+        return;
+      }
+
+      const collection = collections.find(c => c.id === idCollection);
+      if (!collection || collection.questions.length === 0) {
+        alert("Cette collection ne contient aucune question !");
+        return;
+      }
+
+      questions = collection.questions;
+      index = 0;
+      score = 0;
+      resultatEl.textContent = "";
+      scoreEl.textContent = "";
+      inputReponse.style.display = "block";
+      zoneQuiz.classList.remove("hidden");
+      afficherQuestion();
+    }
+
+    function afficherQuestion() {
+      if (index < questions.length) {
+        const q = questions[index];
+        questionEl.textContent = q.question;
+        inputReponse.value = "";
+        resultatEl.textContent = "";
+        // Si question type true/false, remplacer input par boutons
+        if (q.type === "true_false") {
+          inputReponse.style.display = "none";
+          if (!document.getElementById("btnVrai")) {
+            const btnVrai = document.createElement("button");
+            btnVrai.id = "btnVrai";
+            btnVrai.textContent = "Vrai";
+            btnVrai.className = "bg-[#2E7D32] text-white rounded-3xl px-6 py-2 font-semibold hover:bg-[#256928] transition";
+            btnVrai.onclick = () => verifierReponse(true);
+            zoneQuiz.appendChild(btnVrai);
+
+            const btnFaux = document.createElement("button");
+            btnFaux.id = "btnFaux";
+            btnFaux.textContent = "Faux";
+            btnFaux.className = "bg-[#2E7D32] text-white rounded-3xl px-6 py-2 font-semibold hover:bg-[#256928] transition";
+            btnFaux.onclick = () => verifierReponse(false);
+            zoneQuiz.appendChild(btnFaux);
+          }
+        } else {
+          inputReponse.style.display = "block";
+          document.getElementById("btnVrai")?.remove();
+          document.getElementById("btnFaux")?.remove();
         }
-        function verquize() {
-            window.location.href = "quize.html";
-        }
-    </script>
+      } else {
+        questionEl.textContent = "Quiz terminé !";
+        resultatEl.textContent = "";
+        scoreEl.textContent = `Votre score : ${score} / ${questions.length}`;
+        inputReponse.style.display = "none";
+        document.getElementById("btnVrai")?.remove();
+        document.getElementById("btnFaux")?.remove();
+      }
+    }
+
+    function verifierReponse(reponseBool) {
+      const q = questions[index];
+      let correct = false;
+
+      if (q.type === "text") {
+        const userAnswer = inputReponse.value.trim().toLowerCase();
+        correct = q.acceptedAnswers.some(a => a.toLowerCase() === userAnswer);
+      } else if (q.type === "true_false") {
+        correct = q.correct === reponseBool;
+      }
+
+      if (correct) {
+        resultatEl.textContent = "✅ Bonne reponse !";
+        resultatEl.className = "text-green-700 font-semibold";
+        score++;
+      } else {
+        let bonneRep = q.type === "text" ? q.acceptedAnswers[0] : q.correct ? "Vrai" : "Faux";
+        resultatEl.textContent = ` Mauvaise reponse. La bonne etait : ${bonneRep}`;
+        resultatEl.className = "text-red-700 font-semibold";
+      }
+
+      index++;
+      setTimeout(afficherQuestion, 1200);
+    }
+  </script>
 
 </body>
-
 </html>
