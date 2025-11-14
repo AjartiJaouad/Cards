@@ -146,7 +146,7 @@
           document.getElementById("btnFaux")?.remove();
         }
       } else {
-        questionEl.textContent = "🎉 Quiz terminé !";
+        questionEl.textContent = " Quiz terminé !";
         resultatEl.textContent = "";
         scoreEl.textContent = `Votre score : ${score} / ${questions.length}`;
         inputReponse.style.display = "none";
@@ -172,7 +172,7 @@
         score++;
       } else {
         let bonneRep = q.type === "text" ? q.acceptedAnswers[0] : q.correct ? "Vrai" : "Faux";
-        resultatEl.textContent = `❌ Mauvaise réponse. La bonne était : ${bonneRep}`;
+        resultatEl.textContent = ` Mauvaise reponse. La bonne était : ${bonneRep}`;
         resultatEl.className = "text-red-700 font-semibold";
       }
 
